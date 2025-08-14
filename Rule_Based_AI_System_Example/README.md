@@ -46,14 +46,14 @@
 
 Sample input and output: 
 
-Type left or right: left
-You've come to a castle. There is a hole within the wall to the left and the main gate to the right.
+1. Type left or right: **left**
+    - You've come to a castle. There is a hole within the wall to the left and the main gate to the right.
 
-Type hole or gate: hole
-You have been captured and sentenced to death by the king. Should have just asked for entry! Game Over!!
+2. Type hole or gate: **hole**
+    - You have been captured and sentenced to death by the king. Should have just asked for entry! Game Over!!
 
-Choose a door (red, yellow, or blue): blue
-You have found the kings treasure and become the new ruler of the island! You win!!
+3. Choose a door (red, yellow, or blue): **blue**
+    - You have found the kings treasure and become the new ruler of the island! You win!!
 
 ---
 
