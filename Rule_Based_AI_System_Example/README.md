@@ -1,52 +1,44 @@
-# Sample submission for the Building a Rule-Based AI System in Python project.
+# Submission for the Building a Rule-Based AI System in Python project.
 
 ---
 
 ## Part 1: Initial Project Ideas
 
-### 1. Project Idea 1: Recipe Recommender
-- **Description:** A system that recommends recipes based on ingredients the user has on hand. The user enters ingredients, and the system matches them to recipes using predefined rules.  
+### 1. Project Idea 1: Financial Advisor
+- **Description:** A budget assistant.
 - **Rule-Based Approach:**  
-  - The system checks for exact matches and partial matches with the ingredients required for recipes in a dataset.  
-  - Missing ingredients are suggested for partial matches.
+  - If monthly expenses > income = suggest lowering spending.
+  - If savings < __% of income, recommend saving more.
 
-### 2. Project Idea 2: Simple Chatbot
-- **Description:** A chatbot that responds to user inputs with predefined answers. The chatbot simulates a conversation by identifying keywords and phrases in user inputs.  
+### 2. Project Idea 2: Text-Based Adventure Game
+- **Description:** Player makes choices and given on the choice the game either continues on or ends.
 - **Rule-Based Approach:**  
-  - Responses are based on keywords such as "hello," "help," or "bye."  
-  - For example, if the user says "hello," the system responds with "Hi there! How can I assist you?"
+  - If player chooses the correct choice, the game continues.
+  - If player chhoses the wrong choice, the game sadly ends.
 
-### 3. Project Idea 3: Travel Packing List Generator
-- **Description:** A system that generates a packing list based on the user’s destination, climate, and trip duration.  
+### 3. Project Idea 3: Medical Diagnostic Tool
+- **Description:** Checks the users symptoms and suggests a possible illness or cause.
 - **Rule-Based Approach:**  
-  - The system uses rules to recommend items.  
-  - For example, if the destination is "beach" and the climate is "hot," the system suggests sunscreen, swimsuits, and sunglasses.
+  - If fever and headache = possible flu.
+  - If headache and light sensitivity = possible migraine.
 
-### **Chosen Idea:** Recipe Recommender  
-**Justification:** I chose this project because it is practical and applicable to real-life scenarios. It allows me to work with datasets, apply conditional logic, and create a system that provides meaningful recommendations based on user input.
+### **Chosen Idea:** Text-Based Adventure Game  
+**Justification:** I chose this project because it was something I did very early on when I was learning python and it fits as a rule-based decision using if/elif/else statements.
 
 ---
 
 ## Part 2: Rules/Logic for the Chosen System
 
-The **Recipe Recommender** system will follow these rules:
+**Adventure Island** game will follow these rules:
 
 1. **Exact Match Rule:**  
-   - **IF** all ingredients in a recipe are found in the user’s ingredient list → **Recommend the recipe.**
+   - **IF** the correct path is chosen → **Game Continues.**
 
-2. **Partial Match Rule:**  
-   - **IF** 75% or more of the ingredients in a recipe match the user’s ingredient list →  
-     - **Recommend the recipe.**  
-     - **Suggest the missing ingredients.**
+2. **No Match Rule:**  
+   - **IF** the wrong path is chosen →  **Game Over.**  
 
-3. **Common Ingredients Rule:**  
-   - Ingredients like salt, pepper, and water are considered optional and will not be counted as missing.
-
-4. **No Match Rule:**  
-   - **IF** no recipes match → **Suggest adding more ingredients** for better recommendations.
-
-5. **Low Ingredient Rule:**  
-   - **IF** fewer than three ingredients are provided → **Notify the user** and suggest adding more ingredients.
+3. **Win the game Rule:**  
+   - **IF** all the correct paths were chosen →  **Win the game!**
 
 ---
 
@@ -54,38 +46,30 @@ The **Recipe Recommender** system will follow these rules:
 
 Sample input and output: 
 
-Enter your ingredients (comma-separated): chicken, rice, soy sauce
-You are close to making Chicken Fried Rice! Missing: garlic.
+Type left or right: left
+You've come to a castle. There is a hole within the wall to the left and the main gate to the right.
 
-Enter your ingredients (comma-separated): garlic, soy sauce
-No recipes match. Try adding more ingredients.
+Type hole or gate: hole
+You have been captured and sentenced to death by the king. Should have just asked for entry! Game Over!!
 
-Enter your ingredients (comma-separated): pasta, tomatoes, garlic, olive oil
-You can make Spaghetti Pomodoro!
+Choose a door (red, yellow, or blue): blue
+You have found the kings treasure and become the new ruler of the island! You win!!
 
 ---
 
 ## Part 4: Reflection
 
 ### Project Overview:
-This project involved designing a practical, rule-based system to recommend recipes based on user inputs. The system uses logical conditions (e.g., exact and partial matches) to evaluate user-provided ingredients against recipes in the dataset.
+This project involved designing a simple rule/choice based game. If the correct rule/choice was chosen, the game would continue on.
+If the wrong choice was made, you'd be prompted that the game is over. I did something very similar to this when I first started learning python,
+so I was happy to do it again. I'm sort of certain that it meets the criteria for the project.
 
 ### Challenges:
-- **Handling Partial Matches:**  
-  Deciding on a threshold (75%) that balances flexibility with accuracy was challenging.
-- **Common Ingredients:**  
-  Ensuring common ingredients like salt and water don’t skew the results. I resolved this by excluding them from the missing ingredient list.
-
-
-
-
-
-
-
-
-
-
-
+- **VS Code:**  
+  I've always used PyCharm for python stuff so swapping to VS Code and getting everything setup to work right and run properly took me about 45 minutes to figure out.
+- **Choices:**  
+  Trying to keep the program simple and short. I wanted to add so many more choices that could make the
+  game even longer and give alternates paths to the ending. But keeping it short is best
 
 
 

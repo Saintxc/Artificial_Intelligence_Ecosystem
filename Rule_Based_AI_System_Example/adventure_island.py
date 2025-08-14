@@ -4,21 +4,21 @@ choice1 = input("You are at a fork in the road. Do you want to go left or right?
                 "Type 'left' or 'right': \n").lower()
 
 if choice1 == "left":
-    choice2 = input("You've come to a castle. There is a hole within the wall to the left and the main gate to the right.\n"
+    choice2 = input("\nYou've come to a castle. There is a hole within the wall to the left and the main gate to the right.\n"
                     "Do you want to go through the hole or approach the gate? (Type 'hole' or 'gate'): \n").lower()
     if choice2 == "gate":
-        choice3 = input("Your are granted entry into the castle hall. There are 3 doors.\n"
+        choice3 = input("\nYour are granted entry into the castle hall. There are 3 doors.\n"
                         "One Red, one Yellow, and One Blue. Which door do you choose?\n"
-                        "Type 'red', 'yellow', or 'blue': \n").lower()
+                        "Type 'red', 'yellow', 'blue', or any other color if you're feeling adventurous: \n").lower()
         if choice3 == "red":
-            print("You have entered a room full of demons. You simply cannot escape. Game Over!!")
+            print("\nYou have entered a room full of demons. You simply cannot escape. Game Over!!")
         elif choice3 == "yellow":
-            print("You have found the castles dragon! It burns you to a crisp. Game Over!!")
+            print("\nYou have found the castles dragon! It burns you to a crisp. Game Over!!")
         elif choice3 == "blue":
-            print("You have found the kings treasure and become the new ruler of the island! You win!!")
+            print("\nYou have found the kings treasure and become the new ruler of the island! You win!!")
         else:
-            print("You walked into the wall and put yourself in a coma. Tough luck.. Game Over!!")
+            print("\nYou walked into the wall and put yourself in a coma. Tough luck.. Game Over!!")
     else:
-        print("You have been captured and sentenced to death by the king. Should have just asked for entry! Game Over!!")
+        print("\nYou have been captured and sentenced to death by the king. Should have just asked for entry! Game Over!!")
 else:
-    print("You wandered into a forest and found yourself ripped apart by creatures in the shadows. Rough start? Game Over!!")
+    print("\nYou wandered into a forest and found yourself ripped apart by creatures in the shadows. Rough start? Game Over!!")
