@@ -1,4 +1,4 @@
-from PIL import Image, ImageFilter, ImageOps, ImageDraw
+from PIL import Image, ImageDraw
 import matplotlib.pyplot as plt
 import os
 
@@ -12,7 +12,9 @@ def create_american_flag(size):
     stripe_height = height // 13
     for i in range(13):
         if i % 2 == 0:
-            draw.rectangle([0, i * stripe_height, width, (i + 1) * stripe_height], fill="red")
+            y0 = i * stripe_height
+            y1 = height if i == 12 else (i + 1) * stripe_height
+            draw.rectangle([0, y0, width, y1], fill="red")
 
     # Draw blue canton
     canton_height = stripe_height * 7
@@ -20,48 +22,35 @@ def create_american_flag(size):
     draw.rectangle([0, 0, canton_width, canton_height], fill="navy")
 
     # Draw white stars (5 rows of 6, 4 rows of 5)
-    star_radius = min(canton_height // 12, canton_width // 12)
+    star_radius = max(1, min(canton_height // 20, canton_width // 20))
     for row in range(9):
         stars_in_row = 6 if row % 2 == 0 else 5
         y = int((row + 1) * canton_height / 10)
         for col in range(stars_in_row):
             x = int((col + 1) * canton_width / (stars_in_row + 1))
-            draw.ellipse([x - star_radius, y - star_radius, x + star_radius, y + star_radius], fill="white")
+            draw.ellipse(
+                [x - star_radius, y - star_radius, x + star_radius, y + star_radius],
+                fill="white",
+            )
     return flag
 
 def apply_flag_background_filter(image_path, output_path="flag_background_image.png"):
     try:
+        # Open and resize the original image
         img = Image.open(image_path).convert("RGBA")
         img_resized = img.resize((128, 128))
 
-        # Create a mask for the foreground (simple threshold)
-        gray = img_resized.convert("L")
-        mask = gray.point(lambda p: 255 if p > 120 else 0).convert("1")
-        mask_inv = ImageOps.invert(mask.convert("L"))
+        # Create American flag the same size as the image
+        flag_bg = create_american_flag(img_resized.size).convert("RGBA")
 
-        # Create American flag background
-        flag_bg = create_american_flag((128, 128)).convert("RGBA")
+        # Make the flag semi-transparent (40% opacity)
+        flag_bg.putalpha(int(255 * 0.4))
 
-        # Composite: put foreground on flag background
-        foreground = Image.composite(img_resized, Image.new("RGBA", img_resized.size, (0,0,0,0)), mask)
-        result = Image.composite(foreground, flag_bg, foreground.split()[-1])
+        # Overlay the flag on top of the original image
+        result = Image.alpha_composite(img_resized, flag_bg)
 
+        # Save result
         plt.imshow(result)
-        plt.axis('off')
-        plt.savefig(output_path, bbox_inches='tight', pad_inches=0)
-        plt.close()
-        print(f"Processed image saved as '{output_path}'.")
-
-    except Exception as e:
-        print(f"Error processing image: {e}")
-        
-def apply_blur_filter(image_path, output_path="blurred_image.png"):
-    try:
-        img = Image.open(image_path)
-        img_resized = img.resize((128, 128))
-        img_blurred = img_resized.filter(ImageFilter.GaussianBlur(radius=2))
-
-        plt.imshow(img_blurred)
         plt.axis('off')
         plt.savefig(output_path, bbox_inches='tight', pad_inches=0)
         plt.close()
@@ -71,7 +60,7 @@ def apply_blur_filter(image_path, output_path="blurred_image.png"):
         print(f"Error processing image: {e}")
 
 if __name__ == "__main__":
-    print("Image Blur Processor (type 'exit' to quit)\n")
+    print("Image American Flag Background Processor (type 'exit' to quit)\n")
     while True:
         image_path = input("Enter image filename (or 'exit' to quit): ").strip()
         if image_path.lower() == 'exit':
@@ -80,7 +69,6 @@ if __name__ == "__main__":
         if not os.path.isfile(image_path):
             print(f"File not found: {image_path}")
             continue
-        # derive output filename
         base, ext = os.path.splitext(image_path)
-        output_file = f"{base}_blurred{ext}"
-        apply_blur_filter(image_path, output_file)
+        output_file = f"{base}_flag{ext}"
+        apply_flag_background_filter(image_path, output_file)
